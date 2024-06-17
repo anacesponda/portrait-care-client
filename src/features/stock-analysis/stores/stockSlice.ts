@@ -17,7 +17,7 @@ const initialState: StockState = {
 export const fetchStock = createAsyncThunk(
   'stock/fetchStock',
   async (ticker: string) => {
-    const response = await fetchStockData(ticker);
+    const response = await fetchStockData(ticker?.toUpperCase());
     return response;
   }
 );
@@ -31,6 +31,7 @@ const stockSlice = createSlice({
       .addCase(fetchStock.pending, (state) => {
         state.loading = true;
         state.error = null;
+        state.data = null;
       })
       .addCase(fetchStock.fulfilled, (state, action) => {
         state.loading = false;
@@ -38,6 +39,7 @@ const stockSlice = createSlice({
       })
       .addCase(fetchStock.rejected, (state, action) => {
         state.loading = false;
+        state.data = null;
         state.error = action.error.message || 'Failed to fetch stock data';
       });
   },

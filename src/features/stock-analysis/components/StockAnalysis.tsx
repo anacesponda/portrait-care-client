@@ -20,7 +20,7 @@ const StockAnalysis: React.FC = () => {
           onChange={(e) => setTicker(e.target.value)}
           placeholder="Enter a Stock Ticker"
         />
-        <button onClick={handleSearch}>Search</button>
+        <button onClick={handleSearch} type="submit">Search</button>
       </div>
       <StockStatistics ticker={searchTicker} />
     </div>

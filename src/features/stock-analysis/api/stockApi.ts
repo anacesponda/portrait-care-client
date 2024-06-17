@@ -1,6 +1,7 @@
 import axios from 'axios';
 import { StockData } from '../types/stockTypes';
 
+// Todo: read this from an env. 
 const API_URL = 'http://localhost:3000/api/v1/stocks/statistics';
 
 export const fetchStockData = async (ticker: string): Promise<StockData> => {
@@ -9,7 +10,7 @@ export const fetchStockData = async (ticker: string): Promise<StockData> => {
 
   return {
     avgPrice: data.average_price,
-    avgVolume: 0,
+    avgVolume: data.average_volume,
     maxVolume: data.max_volume,
     minVolume: data.min_volume,
     maxPrice: data.max_price,
